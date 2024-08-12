@@ -4,13 +4,16 @@ import NewInput from "../UI/NewInput";
 
 
 const AddNote = (props) => {
-
-    const addNoteHandler = () =>{
-        props.addNoteFunction()
-    }
-    
     const [titleValue, setTitleValue] = useState('')
     const [descValue, setDescValue] = useState('')
+
+    const addNoteHandler = (event) =>{
+        event.preventDefault()
+        console.log('added')
+        props.addNoteFunction({id:props.newId, title:titleValue, description:descValue})
+        props.setNewId(props.newId+1)
+        console.log(props.newId)
+    }
     
 
     return (
@@ -32,8 +35,8 @@ const AddNote = (props) => {
                     onChangeValue={setDescValue}
                     inputClassName='a' />
                 <Button type='submit' >Add to Book</Button>
-                {console.log(titleValue, 'title')}
-                {console.log(descValue, 'desc')}
+                {/* {console.log(titleValue, 'title')}
+                {console.log(descValue, 'desc')} */}
             </form>
             
         </div>
