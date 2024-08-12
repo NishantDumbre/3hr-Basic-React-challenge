@@ -1,4 +1,4 @@
-
+import AddNote from './components/AddNotes/AddNote';
 import NotesList from './components/Notes/NotesList';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <h1>Notebook</h1>
+      <AddNote />
       <NotesList notes={notes} />
     </div>
   );
