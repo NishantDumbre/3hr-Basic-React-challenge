@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import NoteItem from "./NoteItem";
 
 
-const  NotesList = (props) =>{
+const NotesList = ({ notes, filteredResults, isFiltered }) => {
+console.log(isFiltered)
 
-    if (!props.notes) {
-        return 
-      }
-
-    return(
+    return (
         <div>
             <ul>
-                {console.log(props.notes)}
-                {props.notes.map((note) =>{
+                {!isFiltered && notes.map((note, index) => {
                     return (
-                        <NoteItem 
-                    key={note.id}
-                    title={note.title}
-                    description={note.description} />
-                    )
+                        <NoteItem
+                        key={index}
+                        title={note.title}
+                        description={note.description} />
+                )
+                })}
+                {isFiltered && filteredResults.map((note, index) => {
+                    return (
+                        <NoteItem
+                        key={index}
+                        title={note.title}
+                        description={note.description} />
+                )
                 })}
             </ul>
         </div>

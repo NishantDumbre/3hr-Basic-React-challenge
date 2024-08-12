@@ -11,7 +11,7 @@ const NoteItem = (props) =>{
         <li>
             <h3>{props.title}</h3>
             <p>{props.description}</p>
-            <Button onClick={deleteButton} >Delete</Button>
+            <button onClick={deleteButton} >Delete</button>
         </li>
     )
 }

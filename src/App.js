@@ -1,46 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
 import AddNote from './components/AddNotes/AddNote';
+import Header from './components/Header';
 import NotesList from './components/Notes/NotesList';
-import NewInput from './components/UI/NewInput';
 
 function App() {
-  const [newId, setNewId] = useState(1)
 
-  const [count, setCount] = useState(0)
-  const [total, setTotal] = useState(0)
-
-  const notes = [
-    { id: 1, title: 'First Note', description: 'First description' },
-    { id: 2, title: 'Second Note', description: 'Second description' }
-  ]
-
-  const [allNotes, setAllNotes] = useState(notes)
-
-  useEffect(() =>{
-    setTotal(allNotes.length)
-  }, [allNotes])
-
-  const addNewNoteToList = (note) =>{
-    console.log(allNotes)
-    setAllNotes(...allNotes, note)
-  }
+  const [formNotes, setFormNotes] = useState([])
+  const [count, setCount] = useState(formNotes.length)
+  const [filteredResults, setFilteredResults] = useState(formNotes)
+  const [isFiltered, setIsFiltered] = useState(false)
+  
 
   return (
     <div className="App">
-      <h1>Notebook</h1>
-      <p></p>
-      <p>Total: {total}</p>
-      <p>Showing: {count}</p>
-      <NewInput
-        input='text'
-        type='text'
-        title='Search Notes' />
-      <AddNote 
-        addNoteFunction={addNewNoteToList} 
-        newId={newId}
-        setNewId={setNewId} />
-      <NotesList notes={allNotes} />
+      <Header 
+      count={count} 
+      setCount={setCount}
+      formNotes={formNotes} 
+      filteredResults={filteredResults} 
+      onSetFilteredResults={setFilteredResults} 
+      setIsFiltered={setIsFiltered} />
+      <AddNote
+        onSetFormNotes={setFormNotes}
+      />
+      <NotesList notes={formNotes} filteredResults={filteredResults} isFiltered={isFiltered} />
     </div>
   );
 }
